@@ -6,6 +6,7 @@
     <title>Real Estate Pro - นายหน้าอสังหา</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -27,36 +28,72 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Slider -->
     <section id="home" class="hero">
+        <div class="hero-slider">
+            <div class="hero-slide" style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);">
+                <div class="slide-content">
+                    <h1 data-th="ค้นหาบ้านของคุณ" data-en="Find Your Dream Home">ค้นหาบ้านของคุณ</h1>
+                    <p data-th="สิ่งทำเนียบแสนสุขที่คุณต้องการ" data-en="Your Perfect Property Awaits">สิ่งทำเนียบแสนสุขที่คุณต้องการ</p>
+                </div>
+            </div>
+            <div class="hero-slide" style="background: linear-gradient(135deg, #2a5298 0%, #00d4ff 100%);">
+                <div class="slide-content">
+                    <h1 data-th="ลงทุนอสังหาได้ดี" data-en="Invest Wisely">ลงทุนอสังหาได้ดี</h1>
+                    <p data-th="เลือกทรัพย์สินที่ดีที่สุด" data-en="Choose the Best Property">เลือกทรัพย์สินที่ดีที่สุด</p>
+                </div>
+            </div>
+            <div class="hero-slide" style="background: linear-gradient(135deg, #00d4ff 0%, #667eea 100%);">
+                <div class="slide-content">
+                    <h1 data-th="บริการมืออาชีพ" data-en="Professional Service">บริการมืออาชีพ</h1>
+                    <p data-th="ทีมเจ้าหน้าที่ที่มีประสบการณ์" data-en="Experienced Team">ทีมเจ้าหน้าที่ที่มีประสบการณ์</p>
+                </div>
+            </div>
+        </div>
+
         <div class="hero-content">
-            <h2 class="hero-title" data-th="ค้นหาบ้านของคุณ" data-en="Find Your Dream Home">ค้นหาบ้านของคุณ</h2>
-            <p class="hero-subtitle" data-th="สิ่งทำเนียบแสนสุขที่คุณต้องการ" data-en="Your Perfect Property Awaits">สิ่งทำเนียบแสนสุขที่คุณต้องการ</p>
             <div class="search-bar">
                 <input type="text" placeholder="ค้นหาที่อยู่..." id="searchInput" class="search-input">
+                <select id="propertyType" class="search-select">
+                    <option value="">ทั้งหมด / All</option>
+                    <option value="sale" data-th="ขาย" data-en="Sale">ขาย / Sale</option>
+                    <option value="rent" data-th="เช่า" data-en="Rent">เช่า / Rent</option>
+                </select>
                 <button class="search-btn" data-th="ค้นหา" data-en="Search">ค้นหา</button>
             </div>
         </div>
+
+        <!-- Slider Controls -->
+        <div class="slider-controls">
+            <button class="slider-btn prev" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
+            <button class="slider-btn next" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="slider-dots" id="sliderDots"></div>
     </section>
 
     <!-- Stats Section -->
     <section class="stats-section">
         <div class="container">
+            <h2 class="section-title" data-th="ตัวเลขที่พูดได้" data-en="By The Numbers">ตัวเลขที่พูดได้</h2>
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-number" data-th="500+" data-en="500+">500+</div>
+                    <div class="stat-number" data-target="500">0</div>
+                    <span>+</span>
                     <div class="stat-label" data-th="ทรัพย์สิน" data-en="Properties">ทรัพย์สิน</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number" data-th="50+" data-en="50+">50+</div>
+                    <div class="stat-number" data-target="50">0</div>
+                    <span>+</span>
                     <div class="stat-label" data-th="เจ้าหน้าที่" data-en="Agents">เจ้าหน้าที่</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number" data-th="1000+" data-en="1000+">1000+</div>
+                    <div class="stat-number" data-target="1000">0</div>
+                    <span>+</span>
                     <div class="stat-label" data-th="ลูกค้าพึงพอใจ" data-en="Happy Clients">ลูกค้าพึงพอใจ</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number" data-th="24/7" data-en="24/7">24/7</div>
+                    <div class="stat-number">24</div>
+                    <span>/7</span>
                     <div class="stat-label" data-th="บริการ" data-en="Support">บริการ</div>
                 </div>
             </div>
@@ -80,10 +117,20 @@
         </div>
     </section>
 
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title" data-th="รีวิวจากลูกค้า" data-en="Client Reviews">รีวิวจากลูกค้า</h2>
+            <div class="testimonials-grid" id="testimonials">
+                <!-- Testimonials will be generated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
     <!-- Agents Section -->
     <section id="agents" class="agents">
         <div class="container">
-            <h2 class="section-title" data-th="ทีมเจ���าหน้าที่ของเรา" data-en="Our Expert Agents">ทีมเจ้าหน้าที่ของเรา</h2>
+            <h2 class="section-title" data-th="ทีมเจ้าหน้าที่ของเรา" data-en="Our Expert Agents">ทีมเจ้าหน้าที่ของเรา</h2>
             <div class="agents-grid" id="agentsGrid">
                 <!-- Agents will be generated by JavaScript -->
             </div>
@@ -115,6 +162,27 @@
                     </div>
                     <h3 class="service-title" data-th="บ้านหลัก" data-en="Home Financing">บ้านหลัก</h3>
                     <p class="service-desc" data-th="ช่วยหาวิธีการเงินที่เหมาะสม" data-en="Help with financing options">ช่วยหาวิธีการเงินที่เหมาะสม</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="service-title" data-th="ทัวร์เสมือน" data-en="Virtual Tour">ทัวร์เสมือน</h3>
+                    <p class="service-desc" data-th="ดูทรัพย์สินออนไลน์ได้" data-en="View properties online">ดูทรัพย์สินออนไลน์ได้</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3 class="service-title" data-th="คำนวณสินเชื่อ" data-en="Loan Calculator">คำนวณสินเชื่อ</h3>
+                    <p class="service-desc" data-th="คำนวณการผ่อนชำระ" data-en="Calculate monthly payments">คำนวณการผ่อนชำระ</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="service-title" data-th="ยืนยันคุณภาพ" data-en="Quality Assurance">ยืนยันคุณภาพ</h3>
+                    <p class="service-desc" data-th="ตรวจสอบทรัพย์สินแบบมืออาชีพ" data-en="Professional inspection">ตรวจสอบทรัพย์สินแบบมืออาชีพ</p>
                 </div>
             </div>
         </div>
@@ -165,6 +233,18 @@
         </div>
     </section>
 
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <h2 data-th="สมัครรับข้อมูลข่าวสาร" data-en="Subscribe to Newsletter">สมัครรับข้อมูลข่าวสาร</h2>
+            <p data-th="ติดตามข้อมูลทรัพย์สินล่าสุดทุกวัน" data-en="Get latest property updates daily">ติดตามข้อมูลทรัพย์สินล่าสุดทุกวัน</p>
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="email" placeholder="your@email.com" required>
+                <button type="submit" data-th="สมัครสมาชิก" data-en="Subscribe">สมัครสมาชิก</button>
+            </form>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -184,10 +264,11 @@
                 <div class="footer-section">
                     <h4 data-th="ติดตามเรา" data-en="Follow Us">ติดตามเรา</h4>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
             </div>
@@ -196,6 +277,11 @@
             </div>
         </div>
     </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top-btn" id="scrollTopBtn" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <script src="script.js"></script>
 </body>
